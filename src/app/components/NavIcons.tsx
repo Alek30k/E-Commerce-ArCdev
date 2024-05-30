@@ -57,11 +57,7 @@ const NavIcons = () => {
           2
         </div>
       </div>
-      {isCartOpen && (
-        <div className="">
-          <CartModal />
-        </div>
-      )}
+      {isCartOpen && <CartModal />}
     </div>
   );
 };
