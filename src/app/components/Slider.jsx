@@ -1,5 +1,9 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+
 const slides = [
   {
     id: 1,
@@ -28,7 +32,30 @@ const slides = [
 ];
 
 const Slider = () => {
-  return <div className="">Slider</div>;
+  const [current, setCurrent] = useState(0);
+
+  return (
+    <div className="h-[calc(100vh-80px)] overflow-hidden">
+      <div className="w-max h-full transition-all ease-in-out duration-100">
+        {slides.map((slide) => (
+          <div className="" key={slide.id}>
+            {/* TEXT CONTAINER */}
+            <div className="">
+              <h2 className="">{slide.description}</h2>
+              <h1 className="">{slide.title}</h1>
+              <Link href={slide.url}>
+                <button>SHOP NOW</button>
+              </Link>
+            </div>
+            {/* IMAGE CONTAINER */}
+            <div className="relative">
+              <Image src={slide.img} alt={slide.title} fill />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Slider;
