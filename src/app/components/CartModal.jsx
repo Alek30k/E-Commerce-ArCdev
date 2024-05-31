@@ -48,6 +48,13 @@ const CartModal = () => {
               <span>Subtotal</span>
               <span>$49</span>
             </div>
+            <p className="text-gray-500 text-sm mt-2 mb-4">
+              Shipping and taxes calculated at checkout.
+            </p>
+            <div className="flex justify-between text-sm">
+              <button className="">View Cart</button>
+              <button className="">Checkout</button>
+            </div>
           </div>
         </>
       )}
