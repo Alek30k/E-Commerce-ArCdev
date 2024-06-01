@@ -43,15 +43,19 @@ const Slider = () => {
             key={slide.id}
           >
             {/* TEXT CONTAINER */}
-            <div className="w-1/2">
-              <h2 className="">{slide.description}</h2>
-              <h1 className="">{slide.title}</h1>
+            <div className="h-1/2 xl:w-1/2">
+              <h2 className="text-xl lg:text-3xl 2xl:text-5xl">
+                {slide.description}
+              </h2>
+              <h1 className="text-5xl lg:text-6xl 2xl:text-8xl font-semibold">
+                {slide.title}
+              </h1>
               <Link href={slide.url}>
                 <button>SHOP NOW</button>
               </Link>
             </div>
             {/* IMAGE CONTAINER */}
-            <div className="relative w-1/2">
+            <div className="relative h-1/2 xl:w-1/2">
               <Image
                 src={slide.img}
                 alt={slide.title}
