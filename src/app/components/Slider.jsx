@@ -43,7 +43,7 @@ const Slider = () => {
             key={slide.id}
           >
             {/* TEXT CONTAINER */}
-            <div className="h-1/2 xl:w-1/2">
+            <div className="h-1/2 xl:w-1/2 xl:h-full flex flex-col items-center justify-center gap-8 2xl:gap-12 text-center">
               <h2 className="text-xl lg:text-3xl 2xl:text-5xl">
                 {slide.description}
               </h2>
@@ -51,11 +51,13 @@ const Slider = () => {
                 {slide.title}
               </h1>
               <Link href={slide.url}>
-                <button>SHOP NOW</button>
+                <button className="rounded-md bg-black text-white py-3 px-4">
+                  SHOP NOW
+                </button>
               </Link>
             </div>
             {/* IMAGE CONTAINER */}
-            <div className="relative h-1/2 xl:w-1/2">
+            <div className="relative h-1/2 xl:w-1/2 xl:h-full">
               <Image
                 src={slide.img}
                 alt={slide.title}
@@ -64,6 +66,20 @@ const Slider = () => {
                 className="object-cover"
               />
             </div>
+          </div>
+        ))}
+      </div>
+      <div className="">
+        {slides.map((slide, index) => (
+          <div
+            className={`w-3 h-3 rounded-full ring-1 ring-gray-600 cursor-pointer flex items-center justify-center ${
+              current === index ? "scale-150" : ""
+            }`}
+            key={slide.id}
+          >
+            {current === index && (
+              <div className="w-[6px] h-[6px] bg-gray-600 rounded-full"></div>
+            )}
           </div>
         ))}
       </div>
