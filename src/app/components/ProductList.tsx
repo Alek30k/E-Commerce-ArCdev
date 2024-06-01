@@ -25,9 +25,13 @@ const ProductList = () => {
           />
         </div>
         <div className="flex justify-between">
-          <span>Product Name</span>
-          <span>$49</span>
+          <span className="font-medium">Product Name</span>
+          <span className="font-semibold">$49</span>
         </div>
+        <div className="text-sm text-gray-500">My description</div>
+        <button className="rounded-2xl ring-1 w-max ring-ale text-ale py-2 px-4 text-xs hover:bg-ale hover:text-white">
+          Add to Cart
+        </button>
       </Link>
     </div>
   );
