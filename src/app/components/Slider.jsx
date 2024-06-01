@@ -36,11 +36,14 @@ const Slider = () => {
 
   return (
     <div className="h-[calc(100vh-80px)] overflow-hidden">
-      <div className="w-max h-full transition-all ease-in-out duration-100">
+      <div className="w-max h-full transition-all ease-in-out duration-1000">
         {slides.map((slide) => (
-          <div className="" key={slide.id}>
+          <div
+            className={`${slide.bg} w-screen h-full flex  flex-col gap-16 xl:flex-row`}
+            key={slide.id}
+          >
             {/* TEXT CONTAINER */}
-            <div className="">
+            <div className="w-1/2">
               <h2 className="">{slide.description}</h2>
               <h1 className="">{slide.title}</h1>
               <Link href={slide.url}>
@@ -48,8 +51,14 @@ const Slider = () => {
               </Link>
             </div>
             {/* IMAGE CONTAINER */}
-            <div className="relative">
-              <Image src={slide.img} alt={slide.title} fill />
+            <div className="relative w-1/2">
+              <Image
+                src={slide.img}
+                alt={slide.title}
+                fill
+                sizes="100%"
+                className="object-cover"
+              />
             </div>
           </div>
         ))}
