@@ -26,6 +26,34 @@ const SinglePage = () => {
         <div className="h-[2px] bg-gray-100" />
         <CustomizeProducts />
         <Add />
+        <div className="h-[2px] bg-gray-100" />
+        <div className="text-sm">
+          <h4 className="font-medium mb-4">Title</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+            dolorum, a voluptatibus sequi commodi harum fugit velit ad mollitia
+            dicta nostrum officiis culpa doloremque perspiciatis molestias unde
+            placeat, aliquam possimus.
+          </p>
+        </div>
+        <div className="text-sm">
+          <h4 className="font-medium mb-4">Title</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+            dolorum, a voluptatibus sequi commodi harum fugit velit ad mollitia
+            dicta nostrum officiis culpa doloremque perspiciatis molestias unde
+            placeat, aliquam possimus.
+          </p>
+        </div>
+        <div className="text-sm">
+          <h4 className="font-medium mb-4">Title</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+            dolorum, a voluptatibus sequi commodi harum fugit velit ad mollitia
+            dicta nostrum officiis culpa doloremque perspiciatis molestias unde
+            placeat, aliquam possimus.
+          </p>
+        </div>
       </div>
     </div>
   );
