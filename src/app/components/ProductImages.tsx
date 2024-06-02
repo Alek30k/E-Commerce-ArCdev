@@ -12,7 +12,35 @@ const ProductImages = () => {
           className="object-cover rounded-md"
         />
       </div>
-      <div className=""></div>
+      <div className="">
+        <div className="">
+          <Image
+            src="https://images.pexels.com/photos/3819969/pexels-photo-3819969.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt=""
+            fill
+            sizes="30vw"
+            className="object-cover rounded-md"
+          />
+        </div>
+        <div className="">
+          <Image
+            src="https://images.pexels.com/photos/3819969/pexels-photo-3819969.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt=""
+            fill
+            sizes="30vw"
+            className="object-cover rounded-md"
+          />
+        </div>
+        <div className="">
+          <Image
+            src="https://images.pexels.com/photos/3819969/pexels-photo-3819969.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt=""
+            fill
+            sizes="30vw"
+            className="object-cover rounded-md"
+          />
+        </div>
+      </div>
     </div>
   );
 };
