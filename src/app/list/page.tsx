@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Filter from "../components/Filter";
+import ProductList from "../components/ProductList";
 
 const ListPage = () => {
   return (
@@ -21,6 +23,11 @@ const ListPage = () => {
           <Image src="/woman.png" alt="" fill className="object-contain" />
         </div>
       </div>
+      {/* FILTER */}
+      <Filter />
+      {/* PRODUCTS */}
+      <h1 className="mt-12 text-xl font-semibold">Shoes For You!</h1>
+      <ProductList />
     </div>
   );
 };
