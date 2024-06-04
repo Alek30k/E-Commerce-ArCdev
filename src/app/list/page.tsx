@@ -3,7 +3,6 @@ import Filter from "../components/Filter";
 import ProductList from "../components/ProductList";
 
 const ListPage = () => {
-  const propsCategory = process.env.FEATURED_PRODUCTS_FEATURED_CATEGORY_ID;
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative">
       {/* CAMPAIGN */}
@@ -28,7 +27,10 @@ const ListPage = () => {
       <Filter />
       {/* PRODUCTS */}
       <h1 className="mt-12 text-xl font-semibold">Shoes For You!</h1>
-      <ProductList categoryId={propsCategory!} limit={4} />
+      <ProductList
+        categoryId={process.env.FEATURED_PRODUCTS_FEATURED_CATEGORY_ID!}
+        limit={4}
+      />
     </div>
   );
 };
