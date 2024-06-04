@@ -2,24 +2,21 @@ import { wixClientServer } from "@/lib/wixClientServer";
 import { products } from "@wix/stores";
 import Image from "next/image";
 import Link from "next/link";
-// import DOMPurify from "isomorphic-dompurify";
-// import Pagination from "./Pagination";
 
 const PRODUCT_PER_PAGE = 8;
 
 const ProductList = async ({
   categoryId,
   limit,
-}: // searchParams,
-{
-  categoryId: string;
+}: {
+  categoryId?: string;
   limit?: number;
-  // searchParams?: any;
 }) => {
   const wixClient = await wixClientServer();
 
   const res = await wixClient.products
     .queryProducts()
+    .eq("collectionIds", categoryId)
     .limit(limit || PRODUCT_PER_PAGE)
     .find();
 
