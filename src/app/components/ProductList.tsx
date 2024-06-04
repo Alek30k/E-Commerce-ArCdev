@@ -9,9 +9,10 @@ const ProductList = async ({
   categoryId,
   limit,
 }: {
-  categoryId?: string;
+  categoryId: string;
   limit?: number;
 }) => {
+  // console.log("OHHHHH>>>>>>", categoryId);
   const wixClient = await wixClientServer();
 
   const res = await wixClient.products
