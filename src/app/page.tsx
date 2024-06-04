@@ -5,9 +5,11 @@ import CategoryList from "./components/CategoryList";
 import ProductList from "./components/ProductList";
 import Slider from "./components/Slider";
 import { WixClientContext } from "@/context/wixContext";
+import { useWixClient } from "@/Hooks/useWixClient";
 
 const HomePage = () => {
-  const wixClient = useContext(WixClientContext);
+  // const wixClient = useContext(WixClientContext);
+  const wixClient = useWixClient();
 
   useEffect(() => {
     const geProducts = async () => {
