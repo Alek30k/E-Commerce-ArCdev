@@ -1,5 +1,6 @@
 import { wixClientServer } from "@/lib/wixClientServer";
 import { products } from "@wix/stores";
+import DOMPurify from "isomorphic-dompurify";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,7 +13,6 @@ const ProductList = async ({
   categoryId: string;
   limit?: number;
 }) => {
-  // console.log("OHHHHH>>>>>>", categoryId);
   const wixClient = await wixClientServer();
 
   const res = await wixClient.products
@@ -56,13 +56,13 @@ const ProductList = async ({
           {product.additionalInfoSections && (
             <div
               className="text-sm text-gray-500"
-              // dangerouslySetInnerHTML={{
-              //   __html: DOMPurify.sanitize(
-              //     product.additionalInfoSections.find(
-              //       (section: any) => section.title === "shortDesc"
-              //     )?.description || ""
-              //   ),
-              // }}
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(
+                  product.additionalInfoSections.find(
+                    (section: any) => section.title === "shortDesc"
+                  )?.description || ""
+                ),
+              }}
             ></div>
           )}
           <button className="rounded-2xl ring-1 ring-lama text-lama w-max py-2 px-4 text-xs hover:bg-lama hover:text-white">
