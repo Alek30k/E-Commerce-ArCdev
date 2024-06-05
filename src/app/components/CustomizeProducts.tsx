@@ -1,3 +1,5 @@
+"use client";
+
 import { products } from "@wix/stores";
 
 const CustomizeProducts = ({
