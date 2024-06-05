@@ -1,8 +1,18 @@
+import { wixClientServer } from "@/lib/wixClientServer";
 import Add from "../components/Add";
 import CustomizeProducts from "../components/CustomizeProducts";
 import ProductImages from "../components/ProductImages";
 
-const SinglePage = () => {
+const SinglePage = async ({ params }: { params: { slug: string } }) => {
+  console.log(params);
+
+  const wixClient = await wixClientServer();
+
+  const res = await wixClient.products
+    .queryProducts()
+    // .eq("collectionIds", categoryId)
+    .find();
+
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:32 2xl:px-64 relative flex flex-col lg:flex-row gap-16">
       {/* IMG */}
