@@ -1,9 +1,9 @@
-import Image from "next/image";
-import Filter from "../components/Filter";
-import ProductList from "../components/ProductList";
 import { wixClientServer } from "@/lib/wixClientServer";
+import Image from "next/image";
 import { Suspense } from "react";
+import Filter from "../components/Filter";
 import Skeleton from "../components/Skeleton";
+import ProductList from "../components/ProductList";
 
 const ListPage = async ({ searchParams }: { searchParams: any }) => {
   const wixClient = await wixClientServer();
@@ -21,10 +21,7 @@ const ListPage = async ({ searchParams }: { searchParams: any }) => {
             Grab up to 50% off on
             <br /> Selected Products
           </h1>
-          <button
-            className="rounded-3xl bg-ale
-           text-white w-max py-3 px-5 text-sm"
-          >
+          <button className="rounded-3xl bg-ale text-white w-max py-3 px-5 text-sm">
             Buy Now
           </button>
         </div>
