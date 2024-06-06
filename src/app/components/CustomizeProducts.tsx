@@ -28,7 +28,10 @@ const CustomizeProducts = ({
       return (
         Object.entries(choices).every(
           ([key, value]) => variantChoices[key] === value
-        ) && variant.stock?.inStock
+        ) &&
+        variant.stock?.inStock &&
+        variant.stock?.quantity &&
+        variant.stock?.quantity > 0
       );
     });
   };
