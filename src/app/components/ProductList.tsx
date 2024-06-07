@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import DOMPurify from "isomorphic-dompurify";
 import Pagination from "./Pagination";
-// import Pagination from "./Pagination";
 
 const PRODUCT_PER_PAGE = 8;
 
@@ -29,12 +28,12 @@ const ProductList = async ({
     )
     .gt("priceData.price", searchParams?.min || 0)
     .lt("priceData.price", searchParams?.max || 999999)
-    .limit(limit || PRODUCT_PER_PAGE);
-  // .skip(
-  //   searchParams?.page
-  //     ? parseInt(searchParams.page) * (limit || PRODUCT_PER_PAGE)
-  //     : 0
-  // );
+    .limit(limit || PRODUCT_PER_PAGE)
+    .skip(
+      searchParams?.page
+        ? parseInt(searchParams.page) * (limit || PRODUCT_PER_PAGE)
+        : 0
+    );
   // .find();
 
   if (searchParams?.sort) {
@@ -92,18 +91,18 @@ const ProductList = async ({
               }}
             ></div>
           )}
-          <button className="rounded-2xl ring-1 ring-ale text-ale w-max py-2 px-4 text-xs hover:bg-ale hover:text-white">
+          <button className="rounded-2xl ring-1 ring-lama text-lama w-max py-2 px-4 text-xs hover:bg-lama hover:text-white">
             Add to Cart
           </button>
         </Link>
       ))}
-      {/* {searchParams?.cat || searchParams?.name ? ( */}
-      <Pagination
-        currentPage={res.currentPage || 0}
-        hasPrev={res.hasPrev()}
-        hasNext={res.hasNext()}
-      />
-      {/* ) : null} */}
+      {searchParams?.cat || searchParams?.name ? (
+        <Pagination
+          currentPage={res.currentPage || 0}
+          hasPrev={res.hasPrev()}
+          hasNext={res.hasNext()}
+        />
+      ) : null}
     </div>
   );
 };
