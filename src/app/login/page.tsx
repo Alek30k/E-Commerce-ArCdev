@@ -104,6 +104,21 @@ const LoginPage = () => {
             Forgot Password?
           </div>
         )}
+        <button
+          className="bg-ale text-white p-2 rounded-md disabled:bg-pink-200 disabled:cursor-not-allowed"
+          disabled={isLoading}
+        >
+          {isLoading ? "Loading..." : buttonTitle}
+        </button>
+        {error && <div className="text-red-600">{error}</div>}
+        {mode === MODE.LOGIN && (
+          <div
+            className="text-sm underline cursor-pointer"
+            onClick={() => setMode(MODE.REGISTER)}
+          >
+            {"Don't"} have an account?
+          </div>
+        )}
       </form>
     </div>
   );
