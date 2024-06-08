@@ -119,6 +119,23 @@ const LoginPage = () => {
             {"Don't"} have an account?
           </div>
         )}
+        {mode === MODE.REGISTER && (
+          <div
+            className="text-sm underline cursor-pointer"
+            onClick={() => setMode(MODE.LOGIN)}
+          >
+            Have and account?
+          </div>
+        )}
+        {mode === MODE.RESET_PASSWORD && (
+          <div
+            className="text-sm underline cursor-pointer"
+            onClick={() => setMode(MODE.LOGIN)}
+          >
+            Go back to Login
+          </div>
+        )}
+        {message && <div className="text-green-600 text-sm">{message}</div>}
       </form>
     </div>
   );
