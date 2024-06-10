@@ -47,6 +47,31 @@ const LoginPage = () => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
+
+    try {
+      let response;
+
+      switch (mode) {
+        case MODE.LOGIN:
+          response = await wixClient.auth.login({
+            email,
+            password,
+          });
+          break;
+        case MODE.REGISTER:
+          response = await wixClient.auth.register({
+            email,
+            password,
+            profile: { nickname: username },
+          });
+          break;
+      }
+    } catch (error) {
+      console.log(error);
+      setError("Something went wrong!");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
