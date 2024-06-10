@@ -43,7 +43,11 @@ const LoginPage = () => {
       ? "Reset"
       : "Verify";
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+  };
 
   return (
     <div className="h-[calc(100vh-80px)] px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 flex items-center justify-center">

@@ -10,7 +10,9 @@ import { useWixClient } from "@/Hooks/useWixClient";
 const NavIcons = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const wixClient = useWixClient();
   const isLoggedIn = false;
 
   const router = useRouter();
@@ -36,6 +38,15 @@ const NavIcons = () => {
   //   localStorage.setItem("oAuthRedirectData", JSON.stringify(loginRequestData));
   //   const { authUrl } = await wixClient.auth.getAuthUrl(loginRequestData);
   //   window.location.href = authUrl;
+  // };
+
+  // const handleLogout = async () => {
+  //   setIsLoading(true);
+  //   Cookies.remove("refreshToken");
+  //   const { logoutUrl } = await wixClient.auth.logout(window.location.href);
+  //   setIsLoading(false);
+  //   setIsProfileOpen(false);
+  //   router.push(logoutUrl);
   // };
 
   return (
