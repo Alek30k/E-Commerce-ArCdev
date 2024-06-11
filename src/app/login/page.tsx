@@ -4,6 +4,7 @@ import { useWixClient } from "@/Hooks/useWixClient";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { LoginState } from "@wix/sdk";
+import Cookies from "js-cookie";
 
 enum MODE {
   LOGIN = "LOGIN",
@@ -83,6 +84,15 @@ const LoginPage = () => {
       }
       switch (response?.loginState) {
         case LoginState.SUCCESS:
+          setMessage("Successful! You are being redirected.");
+          const tokens = await wixClient.auth.getMemberTokensForDirectLogin(
+            response.data.sessionToken!
+          );
+          Cookies.set("refreshToken", JSON.stringify(tokens.refreshToken), {
+            expires: 2,
+          });
+          wixClient.auth.setTokens(tokens);
+          router.push("/");
           break;
 
         default:
