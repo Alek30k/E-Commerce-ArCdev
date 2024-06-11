@@ -3,6 +3,7 @@
 import { useWixClient } from "@/Hooks/useWixClient";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { LoginState } from "@wix/sdk";
 
 enum MODE {
   LOGIN = "LOGIN",
@@ -77,6 +78,13 @@ const LoginPage = () => {
             verificationCode: emailCode,
           });
           break;
+        default:
+          break;
+      }
+      switch (response?.loginState) {
+        case LoginState.SUCCESS:
+          break;
+
         default:
           break;
       }
