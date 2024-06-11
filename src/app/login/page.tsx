@@ -65,6 +65,20 @@ const LoginPage = () => {
             profile: { nickname: username },
           });
           break;
+        case MODE.RESET_PASSWORD:
+          response = await wixClient.auth.sendPasswordResetEmail(
+            email,
+            window.location.href
+          );
+          setMessage("Password reset email sent. Please check your e-mail.");
+          break;
+        case MODE.EMAIL_VERIFICATION:
+          response = await wixClient.auth.processVerification({
+            verificationCode: emailCode,
+          });
+          break;
+        default:
+          break;
       }
     } catch (error) {
       console.log(error);
