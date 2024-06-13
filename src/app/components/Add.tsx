@@ -41,6 +41,7 @@ const Add = ({
             catalogItemId: productId,
             ...(variantId && { options: { variantId } }),
           },
+          quantity: quantity,
         },
       ],
     });
