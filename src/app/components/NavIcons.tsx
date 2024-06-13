@@ -14,7 +14,6 @@ const NavIcons = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-  // const pathName = usePathname();
 
   const wixClient = useWixClient();
   const isLoggedIn = wixClient.auth.loggedIn();
