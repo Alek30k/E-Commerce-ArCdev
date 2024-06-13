@@ -17,6 +17,12 @@ const LoginPage = () => {
   const wixClient = useWixClient();
   const router = useRouter();
 
+  const isLoggedIn = wixClient.auth.loggedIn();
+
+  if (isLoggedIn) {
+    router.push("/");
+  }
+
   const [mode, setMode] = useState(MODE.LOGIN);
 
   const [username, setUsername] = useState("");
