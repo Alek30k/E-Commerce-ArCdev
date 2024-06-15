@@ -55,6 +55,7 @@ export const useCartStore = create<CartState>((set) => ({
       isLoading: false,
     });
   },
+
   removeItem: async (wixClient, itemId) => {
     set((state) => ({ ...state, isLoading: true }));
     const response = await wixClient.currentCart.removeLineItemsFromCurrentCart(
