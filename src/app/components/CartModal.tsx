@@ -4,6 +4,7 @@ import { useCartStore } from "@/Hooks/useCartStore";
 import { useWixClient } from "@/Hooks/useWixClient";
 import Image from "next/image";
 import { useEffect } from "react";
+import { media as wixMedia } from "@wix/sdk";
 
 const CartModal = () => {
   // TEMPORARY
@@ -31,13 +32,20 @@ const CartModal = () => {
             {/* ITEM */}
             {cart.lineItems.map((item) => (
               <div className="flex gap-4" key={item._id}>
-                <Image
-                  src="https://images.pexels.com/photos/3819969/pexels-photo-3819969.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="cartImage"
-                  width={72}
-                  height={96}
-                  className="object-cover rounded-md"
-                />
+                {item.image && (
+                  <Image
+                    src={wixMedia.getScaledToFillImageUrl(
+                      item.image,
+                      72,
+                      96,
+                      {}
+                    )}
+                    alt="cartImage"
+                    width={72}
+                    height={96}
+                    className="object-cover rounded-md"
+                  />
+                )}
                 <div className="flex flex-col justify-between w-full">
                   {/* TOP */}
                   <div className="">
