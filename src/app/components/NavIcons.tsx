@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CartModal from "./CartModal";
 import Cookies from "js-cookie";
 import { useWixClient } from "@/Hooks/useWixClient";
@@ -13,6 +13,8 @@ const NavIcons = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const cartModalRef = useRef(null);
 
   const router = useRouter();
 
@@ -62,7 +64,7 @@ const NavIcons = () => {
   }, [wixClient, getCart]);
 
   return (
-    <div className="flex items-center gap-4 xl:gap-6 relative">
+    <div className="flex items-center gap-4 xl:gap-6 relative ">
       <Image
         src="/profile.png"
         alt=""
