@@ -1,9 +1,9 @@
-// import UpdateButton from "@/components/UpdateButton";
 // import { updateUser } from "@/lib/actions";
 import { wixClientServer } from "@/lib/wixClientServer";
 import { members } from "@wix/members";
 import Link from "next/link";
 import { format } from "timeago.js";
+import UpdateButton from "../components/UpdateButton";
 
 const ProfilePage = async () => {
   const wixClient = await wixClientServer();
@@ -67,7 +67,7 @@ const ProfilePage = async () => {
             placeholder={user.member?.loginEmail || "john@gmail.com"}
             className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
           />
-          {/* <UpdateButton /> */}
+          <UpdateButton />
         </form>
       </div>
       <div className="w-full md:w-1/2">
