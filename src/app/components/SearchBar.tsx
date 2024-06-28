@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const SearchBar = (e: React.FormEvent<HTMLFormElement>) => {
+const SearchBar = () => {
   const router = useRouter();
 
-  const handlerSearch = () => {
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") as string;
@@ -19,7 +19,7 @@ const SearchBar = (e: React.FormEvent<HTMLFormElement>) => {
   return (
     <form
       className="flex items-center justify-between gap-4 bg-gray-100 p-2 rounded-md flex-1 border border-gray-200"
-      onSubmit={handlerSearch}
+      onSubmit={handleSearch}
     >
       <input
         type="text"
