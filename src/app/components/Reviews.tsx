@@ -2,8 +2,9 @@ import Image from "next/image";
 
 const Reviews = async ({ productId }: { productId: string }) => {
   const reviewRes = await fetch(
-    `https://api.fera.ai/v3/public/reviews?product.id=${productId}&public_key=${process.env.NEXT_PUBLIC_FERA_ID}`
+    `https://api.fera.ai/v3/private/reviews?product.id=${productId}&public_key=${process.env.NEXT_PUBLIC_FERA_ID}`
   );
+
   const reviews = await reviewRes.json();
 
   console.log(reviewRes);
