@@ -1,8 +1,10 @@
 import { wixClientServer } from "@/lib/wixClientServer";
-import Add from "../components/Add";
-import CustomizeProducts from "../components/CustomizeProducts";
-import ProductImages from "../components/ProductImages";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import ProductImages from "../components/ProductImages";
+import CustomizeProducts from "../components/CustomizeProducts";
+import Add from "../components/Add";
+import Reviews from "../components/Reviews";
 
 const SinglePage = async ({ params }: { params: { slug: string } }) => {
   const wixClient = await wixClientServer();
@@ -19,7 +21,7 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
   const product = products.items[0];
 
   return (
-    <div className="px-4 md:px-8 lg:px-16 xl:32 2xl:px-64 relative flex flex-col lg:flex-row gap-16">
+    <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative flex flex-col lg:flex-row gap-16">
       {/* IMG */}
       <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">
         <ProductImages items={product.media?.items} />
@@ -56,14 +58,18 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
           />
         )}
         <div className="h-[2px] bg-gray-100" />
-        <div className="text-sm">
-          {product.additionalInfoSections?.map((section: any) => (
-            <div className="text-sm" key={section.title}>
-              <h4 className="font-medium mb-4">{section.title}</h4>
-              <p>{section.description}</p>
-            </div>
-          ))}
-        </div>
+        {product.additionalInfoSections?.map((section: any) => (
+          <div className="text-sm" key={section.title}>
+            <h4 className="font-medium mb-4">{section.title}</h4>
+            <p>{section.description}</p>
+          </div>
+        ))}
+        <div className="h-[2px] bg-gray-100" />
+        {/* REVIEWS */}
+        <h1 className="text-2xl">User Reviews</h1>
+        <Suspense fallback="Loading...">
+          <Reviews productId={product._id!} />
+        </Suspense>
       </div>
     </div>
   );
