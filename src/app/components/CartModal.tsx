@@ -11,7 +11,7 @@ const CartModal = () => {
   // const cartItems = true;
 
   const wixClient = useWixClient();
-  const { cart, isLoading, removeItem } = useCartStore();
+  const { cart, isLoading, removeItem, calculateSubtotal } = useCartStore();
 
   const handleCheckout = async () => {
     try {
@@ -104,12 +104,10 @@ const CartModal = () => {
           </div>
           {/* BOTTOM */}
           <div className="">
-            {!isLoading && (
-              <div className="flex items-center justify-between font-semibold">
-                <span className="">Subtotal</span>
-                <span className="">${cart.subtotal.amount}</span>
-              </div>
-            )}
+            <div className="flex items-center justify-between font-semibold">
+              <span className="">Subtotal</span>
+              <span className="">${calculateSubtotal(cart)}</span>
+            </div>
             <p className="text-gray-500 text-sm mt-2 mb-4">
               Shipping and taxes calculated at checkout.
             </p>

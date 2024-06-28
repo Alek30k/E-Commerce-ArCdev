@@ -1,6 +1,6 @@
-import { WixClient } from "@/context/wixContext";
-import { currentCart } from "@wix/ecom";
 import { create } from "zustand";
+import { currentCart } from "@wix/ecom";
+import { WixClient } from "@/context/wixContext";
 
 type CartState = {
   cart: currentCart.Cart;
@@ -14,13 +14,13 @@ type CartState = {
     quantity: number
   ) => void;
   removeItem: (wixClient: WixClient, itemId: string) => void;
+  calculateSubtotal: any;
 };
 
 export const useCartStore = create<CartState>((set) => ({
   cart: [],
   isLoading: true,
   counter: 0,
-
   getCart: async (wixClient) => {
     try {
       const cart = await wixClient.currentCart.getCurrentCart();
@@ -33,7 +33,6 @@ export const useCartStore = create<CartState>((set) => ({
       set((prev) => ({ ...prev, isLoading: false }));
     }
   },
-
   addItem: async (wixClient, productId, variantId, quantity) => {
     set((state) => ({ ...state, isLoading: true }));
     const response = await wixClient.currentCart.addToCurrentCart({
@@ -55,7 +54,6 @@ export const useCartStore = create<CartState>((set) => ({
       isLoading: false,
     });
   },
-
   removeItem: async (wixClient, itemId) => {
     set((state) => ({ ...state, isLoading: true }));
     const response = await wixClient.currentCart.removeLineItemsFromCurrentCart(
@@ -67,5 +65,14 @@ export const useCartStore = create<CartState>((set) => ({
       counter: response.cart?.lineItems.length,
       isLoading: false,
     });
+  },
+
+  calculateSubtotal: (cart: any) => {
+    const subtotal = cart.lineItems?.reduce((sum: any, item: any) => {
+      if (!item.quantity || !item.price) return sum;
+      return sum + item.quantity * item.price.amount;
+    }, 0);
+
+    return subtotal;
   },
 }));
