@@ -39,14 +39,14 @@ const ProfilePage = async () => {
           <input
             type="text"
             name="firstName"
-            placeholder={user.member?.contact?.firstName || "John"}
+            placeholder={user?.member?.contact?.firstName || "John"}
             className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
           />
           <label className="text-sm text-gray-700">Surname</label>
           <input
             type="text"
             name="lastName"
-            placeholder={user.member?.contact?.lastName || "Doe"}
+            placeholder={user?.member?.contact?.lastName || "Doe"}
             className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
           />
           <label className="text-sm text-gray-700">Phone</label>
@@ -54,8 +54,8 @@ const ProfilePage = async () => {
             type="text"
             name="phone"
             placeholder={
-              (user.member?.contact?.phones &&
-                user.member?.contact?.phones[0]) ||
+              (user?.member?.contact?.phones &&
+                user?.member?.contact?.phones[0]) ||
               "+1234567"
             }
             className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
@@ -64,7 +64,7 @@ const ProfilePage = async () => {
           <input
             type="email"
             name="email"
-            placeholder={user.member?.loginEmail || "john@gmail.com"}
+            placeholder={user?.member?.loginEmail || "john@gmail.com"}
             className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
           />
           <UpdateButton />
@@ -73,7 +73,7 @@ const ProfilePage = async () => {
       <div className="w-full md:w-1/2">
         <h1 className="text-2xl">Orders</h1>
         <div className="mt-12 flex flex-col">
-          {orderRes.orders.map((order) => (
+          {orderRes?.orders?.map((order) => (
             <Link
               href={`/orders/${order._id}`}
               key={order._id}
