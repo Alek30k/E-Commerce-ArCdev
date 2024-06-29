@@ -2,7 +2,7 @@ import { wixClientServer } from "@/lib/wixClientServer";
 import { members } from "@wix/members";
 import Link from "next/link";
 // import { format } from "timeago.js";
-import UpdateButton from "../components/UpdateButton";
+import UpdateButton from "../../components/UpdateButton";
 import { updateUser } from "@/lib/actions";
 
 const ProfilePage = async () => {

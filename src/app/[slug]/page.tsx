@@ -1,10 +1,10 @@
 import { wixClientServer } from "@/lib/wixClientServer";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import ProductImages from "../components/ProductImages";
-import CustomizeProducts from "../components/CustomizeProducts";
-import Add from "../components/Add";
-import Reviews from "../components/Reviews";
+import ProductImages from "../../components/ProductImages";
+import CustomizeProducts from "../../components/CustomizeProducts";
+import Add from "../../components/Add";
+import Reviews from "../../components/Reviews";
 
 const SinglePage = async ({ params }: { params: { slug: string } }) => {
   const wixClient = await wixClientServer();
