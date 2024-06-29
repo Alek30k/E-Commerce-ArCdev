@@ -5,14 +5,16 @@ import { cookies } from "next/headers";
 import { members } from "@wix/members";
 
 export const wixClientServer = async () => {
-  let refreshToken;
+  let refreshToken = null;
 
   try {
     const cookieStore = cookies();
-    refreshToken = JSON.parse(cookieStore.get("refreshToken")?.value || "null");
+    const refreshTokenCookie = cookieStore.get("refreshToken");
+    if (refreshTokenCookie) {
+      refreshToken = JSON.parse(refreshTokenCookie.value || "null");
+    }
   } catch (error) {
     console.error("Error al leer la cookie refreshToken:", error);
-    refreshToken = null;
   }
 
   const wixClient = createClient({
