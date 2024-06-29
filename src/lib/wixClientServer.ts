@@ -10,8 +10,8 @@ export const wixClientServer = async () => {
   try {
     const cookieStore = cookies();
     refreshToken = JSON.parse(cookieStore.get("refreshToken")?.value || "null");
-  } catch (e) {
-    console.error("Error reading refreshToken cookie:", e);
+  } catch (error) {
+    console.error("Error al leer la cookie refreshToken:", error);
     refreshToken = null;
   }
 

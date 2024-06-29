@@ -12,8 +12,6 @@ const ProfilePage = async () => {
     fieldsets: [members?.Set?.FULL],
   });
 
-  console.log(user);
-
   if (!user.member?.contactId) {
     return <div className="">Not logged in!</div>;
   }
