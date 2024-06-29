@@ -2,14 +2,14 @@ import { wixClientServer } from "@/lib/wixClientServer";
 import { members } from "@wix/members";
 import Link from "next/link";
 import { format } from "timeago.js";
-// import UpdateButton from "../components/UpdateButton";
-// import { updateUser } from "@/lib/actions";
+import UpdateButton from "../components/UpdateButton";
+import { updateUser } from "@/lib/actions";
 
 const ProfilePage = async () => {
   const wixClient = await wixClientServer();
 
-  const user = await wixClient.members.getCurrentMember({
-    fieldsets: [members.Set.FULL],
+  const user = await wixClient?.members?.getCurrentMember({
+    fieldsets: [members?.Set?.FULL],
   });
 
   if (!user.member?.contactId) {
@@ -26,7 +26,7 @@ const ProfilePage = async () => {
     <div className="flex flex-col md:flex-row gap-24 md:h-[calc(100vh-180px)] items-center px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
       <div className="w-full md:w-1/2">
         <h1 className="text-2xl">Profile</h1>
-        {/* <form action={updateUser} className="mt-12 flex flex-col gap-4">
+        <form action={updateUser} className="mt-12 flex flex-col gap-4">
           <input type="text" hidden name="id" value={user?.member?.contactId} />
           <label className="text-sm text-gray-700">Username</label>
           <input
@@ -68,7 +68,7 @@ const ProfilePage = async () => {
             className="ring-1 ring-gray-300 rounded-md p-2 max-w-96"
           />
           <UpdateButton />
-        </form> */}
+        </form>
       </div>
       <div className="w-full md:w-1/2">
         <h1 className="text-2xl">Orders</h1>
