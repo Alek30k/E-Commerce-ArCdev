@@ -14,23 +14,27 @@ export const wixClientServer = async () => {
     }
   } catch (error) {
     console.error("Error al leer la cookie refreshToken:", error);
+    throw new Error("Error al leer la cookie refreshToken");
   }
-
-  const wixClient = createClient({
-    modules: {
-      products,
-      collections,
-      orders,
-      members,
-    },
-    auth: OAuthStrategy({
-      clientId: "4d78749b-506c-4c11-bf41-27e528e4f58a",
-      tokens: {
-        refreshToken,
-        accessToken: { value: "", expiresAt: 0 },
+  try {
+    const wixClient = createClient({
+      modules: {
+        products,
+        collections,
+        orders,
+        members,
       },
-    }),
-  });
-
-  return wixClient;
+      auth: OAuthStrategy({
+        clientId: "4d78749b-506c-4c11-bf41-27e528e4f58a",
+        tokens: {
+          refreshToken,
+          accessToken: { value: "", expiresAt: 0 },
+        },
+      }),
+    });
+    return wixClient;
+  } catch (error) {
+    console.error("Error al crear el cliente de Wix:", error);
+    throw new Error("Error al crear el cliente de Wix");
+  }
 };
