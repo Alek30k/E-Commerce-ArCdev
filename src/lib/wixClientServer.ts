@@ -11,6 +11,8 @@ export const wixClientServer = async () => {
     const refreshTokenCookie = cookieStore.get("refreshToken");
     if (refreshTokenCookie) {
       refreshToken = JSON.parse(refreshTokenCookie.value || "null");
+    } else {
+      console.error("Cookie refreshToken no encontrada");
     }
   } catch (error) {
     console.error("Error al leer la cookie refreshToken:", error);
