@@ -20,6 +20,12 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
 
   const product = products.items[0];
 
+  function cleanHtml(html: any) {
+    // Remover tags como <script>, <iframe>, etc.
+    // Utilizar expresiones regulares para reemplazar tags y atributos peligrosos
+    return html.replace(/<script.*?>.*?<\/script>/gi, "");
+  }
+
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative flex flex-col lg:flex-row gap-16">
       {/* IMG */}
@@ -29,7 +35,10 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
       {/* TEXTS */}
       <div className="w-full lg:w-1/2 flex flex-col gap-6">
         <h1 className="text-4xl font-medium">{product.name}</h1>
-        <p className="text-gray-500">{product.description}</p>
+        <p
+          className="text-gray-500"
+          dangerouslySetInnerHTML={{ __html: cleanHtml(product.description) }}
+        />
         <div className="h-[2px] bg-gray-100" />
         {product.price?.price === product.price?.discountedPrice ? (
           <h2 className="font-medium text-2xl">${product.price?.price}</h2>
@@ -61,7 +70,12 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
         {product.additionalInfoSections?.map((section: any) => (
           <div className="text-sm" key={section.title}>
             <h4 className="font-medium mb-4">{section.title}</h4>
-            <p>{section.description}</p>
+            <p
+              className="text-gray-500"
+              dangerouslySetInnerHTML={{
+                __html: cleanHtml(section.description),
+              }}
+            />
           </div>
         ))}
         <div className="h-[2px] bg-gray-100" />
