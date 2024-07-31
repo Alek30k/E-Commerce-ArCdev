@@ -5,6 +5,7 @@ import { media as wixMedia } from "@wix/sdk";
 import { useWixClient } from "@/Hooks/useWixClient";
 import { useCartStore } from "@/Hooks/useCartStore";
 import { currentCart } from "@wix/ecom";
+import Link from "next/link";
 
 const CartModal = () => {
   // TEMPORARY
@@ -13,29 +14,29 @@ const CartModal = () => {
   const wixClient = useWixClient();
   const { cart, isLoading, removeItem, calculateSubtotal } = useCartStore();
 
-  const handleCheckout = async () => {
-    try {
-      const checkout =
-        await wixClient.currentCart.createCheckoutFromCurrentCart({
-          channelType: currentCart.ChannelType.WEB,
-        });
+  // const handleCheckout = async () => {
+  //   try {
+  //     const checkout =
+  //       await wixClient.currentCart.createCheckoutFromCurrentCart({
+  //         channelType: currentCart.ChannelType.WEB,
+  //       });
 
-      const { redirectSession } =
-        await wixClient.redirects.createRedirectSession({
-          ecomCheckout: { checkoutId: checkout.checkoutId },
-          callbacks: {
-            postFlowUrl: window.location.origin,
-            thankYouPageUrl: `${window.location.origin}/success`,
-          },
-        });
+  //     const { redirectSession } =
+  //       await wixClient.redirects.createRedirectSession({
+  //         ecomCheckout: { checkoutId: checkout.checkoutId },
+  //         callbacks: {
+  //           postFlowUrl: window.location.origin,
+  //           thankYouPageUrl: `${window.location.origin}/success`,
+  //         },
+  //       });
 
-      if (redirectSession?.fullUrl) {
-        window.location.href = redirectSession.fullUrl;
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //     if (redirectSession?.fullUrl) {
+  //       window.location.href = redirectSession.fullUrl;
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <div className="w-max absolute p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-white top-12 right-0 flex flex-col gap-6 z-20 ">
@@ -115,13 +116,15 @@ const CartModal = () => {
               <button className="rounded-md py-3 px-4 ring-1 ring-gray-300">
                 View Cart
               </button>
-              <button
-                className="rounded-md py-3 px-4 bg-black text-white disabled:cursor-not-allowed disabled:opacity-75"
-                disabled={isLoading}
-                onClick={handleCheckout}
-              >
-                Checkout
-              </button>
+              <Link href="/checkout">
+                <button
+                  className="rounded-md py-3 px-4 bg-black text-white disabled:cursor-not-allowed disabled:opacity-75"
+                  disabled={isLoading}
+                  // onClick={handleCheckout}
+                >
+                  Checkout
+                </button>
+              </Link>
             </div>
           </div>
         </>
