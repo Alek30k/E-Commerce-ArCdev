@@ -1,6 +1,8 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { useCartStore } from "@/Hooks/useCartStore";
+import { useWixClient } from "@/Hooks/useWixClient";
 import { wixClientServer } from "@/lib/wixClientServer";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -15,7 +17,7 @@ const Checkout = () => {
   const [phone, setPhone] = useState();
   const [zip, setZip] = useState();
   const [address, setAddress] = useState();
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
   const [subtotal, setSubTotal] = useState(0);
   const [deliveryAmount, setDeliveryAmount] = useState(5);
   const [taxAmount, setTaxAmount] = useState(0);
@@ -24,13 +26,27 @@ const Checkout = () => {
 
   const params = useSearchParams();
 
-  //   const wixClient = await wixClientServer();
+  const wixClient = useWixClient();
+  const { cart, isLoading, removeItem, calculateSubtotal } = useCartStore();
 
-  //   const user = await wixClient?.members?.getCurrentMember({
-  //     fieldsets: [members?.Set?.FULL],
-  //   });
+  // console.log(cart.lineItems);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (cart.lineItems) {
+      calculateTotalAmount(cart.lineItems);
+    }
+  }, [cart.lineItems]);
+
+  const calculateTotalAmount = (cart_: any) => {
+    let total = 0;
+    cart_.forEach((item: any) => {
+      total = total + parseInt(item.price.amount);
+    });
+    // setSubTotal(total.toFixed(2));
+
+    setTaxAmount(total * 0.09);
+    setTotal(total + total * 0.09 + deliveryAmount);
+  };
 
   return (
     <div className="">
@@ -64,11 +80,11 @@ const Checkout = () => {
         </div>
         <div className="mx-10 border">
           <h2 className="p-3 bg-gray-200 font-bold text-center">
-            Total Cart ({cart.length})
+            Total Cart ({cart.lineItems?.length})
           </h2>
           <div className="p-4 flex flex-col gap-4">
             <h2 className="font-bold flex justify-between">
-              Subtotal : <span>${subtotal}</span>
+              Subtotal : <span>${calculateSubtotal(cart)}</span>
             </h2>
             <hr />
             <h2 className="flex justify-between">
