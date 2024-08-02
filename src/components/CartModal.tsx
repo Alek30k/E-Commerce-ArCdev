@@ -4,7 +4,7 @@ import Image from "next/image";
 import { media as wixMedia } from "@wix/sdk";
 import { useWixClient } from "@/Hooks/useWixClient";
 import { useCartStore } from "@/Hooks/useCartStore";
-import { currentCart } from "@wix/ecom";
+// import { currentCart } fupdateCartrom "@wix/ecom";
 import Link from "next/link";
 
 const CartModal = () => {

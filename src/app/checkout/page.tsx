@@ -1,11 +1,14 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { CartUpdateContext } from "@/context/CartUpdateContext";
 import { useCartStore } from "@/Hooks/useCartStore";
 import { useWixClient } from "@/Hooks/useWixClient";
 import { wixClientServer } from "@/lib/wixClientServer";
+import { Loader } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import { Input } from "@/components/ui/input";
 // import { Button } from "@/components/ui/button";
 // import { Loader } from "lucide-react";
@@ -29,13 +32,15 @@ const Checkout = () => {
   const wixClient = useWixClient();
   const { cart, isLoading, removeItem, calculateSubtotal } = useCartStore();
 
+  const { updateCart, setUpdateCart } = useContext(CartUpdateContext);
+
   // console.log(cart.lineItems);
 
   useEffect(() => {
     if (cart.lineItems) {
       calculateTotalAmount(cart.lineItems);
     }
-  }, [cart.lineItems]);
+  }, [cart.lineItems || updateCart]);
 
   const calculateTotalAmount = (cart_: any) => {
     let total = 0;
@@ -101,9 +106,9 @@ const Checkout = () => {
             {/* <Button onClick={() => addToOrder()}>
               {loading ? <Loader className="animate-spin" /> : "Make Payment"}
             </Button> */}
-            {/* <Button onClick={() => addToOrder()}>
+            <Button>
               {loading ? <Loader className="animate-spin" /> : "Make Payment"}
-            </Button> */}
+            </Button>
 
             {/* {total > 5 && (
               <PayPalButtons
