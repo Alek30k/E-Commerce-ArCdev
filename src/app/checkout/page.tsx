@@ -56,15 +56,15 @@ const Checkout = () => {
   const addToOrder = () => {
     setLoading(true);
 
-    // const data = {
-    //   email: user?.primaryEmailAddress.emailAddress,
-    //   orderAmount: total,
-    //   restaurantName: params.get("restaurant"),
-    //   userName: user?.fullName,
-    //   phone: phone,
-    //   address: address,
-    //   zipCode: zip,
-    // };
+    const data = {
+      email: user?.primaryEmailAddress.emailAddress,
+      orderAmount: total,
+      restaurantName: params.get("restaurant"),
+      userName: user?.fullName,
+      phone: phone,
+      address: address,
+      zipCode: zip,
+    };
 
     GlobalApi.CreateNewOrder(data).then((resp) => {
       // console.log(resp?.createOrder?.id);
