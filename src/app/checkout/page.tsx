@@ -53,6 +53,55 @@ const Checkout = () => {
     setTotal(total + total * 0.09 + deliveryAmount);
   };
 
+  const addToOrder = () => {
+    setLoading(true);
+
+    // const data = {
+    //   email: user?.primaryEmailAddress.emailAddress,
+    //   orderAmount: total,
+    //   restaurantName: params.get("restaurant"),
+    //   userName: user?.fullName,
+    //   phone: phone,
+    //   address: address,
+    //   zipCode: zip,
+    // };
+
+    GlobalApi.CreateNewOrder(data).then((resp) => {
+      // console.log(resp?.createOrder?.id);
+      const resultId = resp?.createOrder?.id;
+
+      if (resultId) {
+        cart.forEach(
+          (item) => {
+            GlobalApi.UpdateOrderToAddOrderItems(
+              item.productName,
+              item.price,
+              resultId,
+              user?.primaryEmailAddress.emailAddress
+            ).then(
+              (result) => {
+                setLoading(false);
+                toast("Order Created Successfully!");
+                setUpdateCart(!updateCart);
+                router.replace("/confirmation");
+                // SendEmail();
+                SendEmail(cart, total);
+              },
+              (err) => {
+                console.log(err);
+                setLoading(false);
+              }
+            );
+          },
+          (err) => {
+            console.log(err);
+            setLoading(false);
+          }
+        );
+      }
+    });
+  };
+
   return (
     <div className="">
       <h2 className="font-bold text-2xl my-5 ">Checkaut</h2>
@@ -106,7 +155,7 @@ const Checkout = () => {
             {/* <Button onClick={() => addToOrder()}>
               {loading ? <Loader className="animate-spin" /> : "Make Payment"}
             </Button> */}
-            <Button>
+            <Button onClick={() => addToOrder()}>
               {loading ? <Loader className="animate-spin" /> : "Make Payment"}
             </Button>
 
